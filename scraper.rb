@@ -14,6 +14,7 @@ data = json_from('https://scrapers.herokuapp.com/represent/ca/').map do |m|
     id: m['url'][/\((\d+)\)/, 1],
     name: m['name'],
     party: m['party_name'],
+    party_id: m['party_name'].downcase.gsub(/\s+/,'_'),
     district: m['district_name'],
     website: m['personal_url'],
     email: m['email'],
