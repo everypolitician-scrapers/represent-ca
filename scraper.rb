@@ -1,5 +1,4 @@
-
-# Fetch Canadian Parliament information from https://scrapers.herokuapp.com/
+# Fetch Canadian Parliament information from https://scrapers.herokuapp.com/
 
 require 'json'
 require 'scraperwiki'
@@ -23,7 +22,5 @@ data = json_from('https://scrapers.herokuapp.com/represent/ca/').map do |m|
   }
 end
 
-data.each_with_index do |r, i|
-  # puts "Adding #{i+1}. #{r[:id]}: #{r}"
-  ScraperWiki.save_sqlite([:id], data)
-end
+ScraperWiki.sqliteexecute('DROP TABLE data') rescue nil
+ScraperWiki.save_sqlite([:id], data)
